@@ -1,15 +1,18 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
-/** 本地 `npm run dev` 默认与线上一致；若要在根路径开发，在 `.env` 中设 `VITE_PUBLIC_BASE_PATH=/` */
-const DEV_DEFAULT_BASE = "/nestjs-reading/";
+/**
+ * 未设置 `VITE_PUBLIC_BASE_PATH` 时，开发与生产共用此前缀（如 `http://localhost:5174/nestjs-reading/`）。
+ * 根路径部署时在 `.env` 中设 `VITE_PUBLIC_BASE_PATH=/`。
+ */
+const DEFAULT_PUBLIC_BASE = "/nestjs-reading/";
 
 function normalizeBase(raw: string): string {
   const withLeading = raw.startsWith("/") ? raw : `/${raw}`;
   return withLeading.endsWith("/") ? withLeading : `${withLeading}/`;
 }
 
-function resolveBase(mode: string, env: Record<string, string>): string {
+function resolveBase(env: Record<string, string>): string {
   const explicit = env.VITE_PUBLIC_BASE_PATH?.trim();
   if (explicit === "/") {
     return "/";
@@ -17,16 +20,13 @@ function resolveBase(mode: string, env: Record<string, string>): string {
   if (explicit) {
     return normalizeBase(explicit);
   }
-  if (mode === "development") {
-    return DEV_DEFAULT_BASE;
-  }
-  return "/";
+  return DEFAULT_PUBLIC_BASE;
 }
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  const base = resolveBase(mode, env);
+  const base = resolveBase(env);
 
   return {
     base,
