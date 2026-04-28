@@ -1,0 +1,32 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/nestjs-reading/",
+      "permanent": false
+    },
+    {
+      "source": "/nestjs-reading",
+      "destination": "/nestjs-reading/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/nestjs-reading/assets/:path*",
+      "destination": "/assets/:path*"
+    },
+    {
+      "source": "/nestjs-reading/favicon.svg",
+      "destination": "/favicon.svg"
+    },
+    {
+      "source": "/nestjs-reading/icons.svg",
+      "destination": "/icons.svg"
+    },
+    {
+      "source": "/nestjs-reading/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}
