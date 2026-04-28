@@ -4,11 +4,6 @@
       "source": "/",
       "destination": "/nestjs-reading/",
       "permanent": false
-    },
-    {
-      "source": "/nestjs-reading",
-      "destination": "/nestjs-reading/",
-      "permanent": false
     }
   ],
   "rewrites": [
@@ -23,6 +18,10 @@
     {
       "source": "/nestjs-reading/icons.svg",
       "destination": "/icons.svg"
+    },
+    {
+      "source": "/nestjs-reading",
+      "destination": "/index.html"
     },
     {
       "source": "/nestjs-reading/",
