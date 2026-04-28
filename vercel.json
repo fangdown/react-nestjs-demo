@@ -25,6 +25,10 @@
       "destination": "/icons.svg"
     },
     {
+      "source": "/nestjs-reading/",
+      "destination": "/index.html"
+    },
+    {
       "source": "/nestjs-reading/:path*",
       "destination": "/index.html"
     }
